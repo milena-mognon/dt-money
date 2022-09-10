@@ -1,6 +1,9 @@
 import { useContext } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
+import { useForm, Controller } from 'react-hook-form';
+import * as zod from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   CloseButton,
   Content,
@@ -8,11 +11,6 @@ import {
   TransactionType,
   TransactionTypeButton,
 } from './styles';
-import { useForm } from 'react-hook-form';
-import * as zod from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller } from 'react-hook-form';
-import { api } from '../../lib/axios';
 import { TransactionsContext } from '../../contexts/TransactionsContext';
 
 const newTransactionFormSchema = zod.object({
@@ -81,8 +79,6 @@ export function NewTransactionModal() {
               control={control}
               name="type"
               render={({ field }) => {
-                console.log(field);
-
                 return (
                   <TransactionType
                     onValueChange={field.onChange}
