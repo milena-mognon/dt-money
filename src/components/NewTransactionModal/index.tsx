@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
 import {
@@ -11,6 +12,8 @@ import { useForm } from 'react-hook-form';
 import * as zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller } from 'react-hook-form';
+import { api } from '../../lib/axios';
+import { TransactionsContext } from '../../contexts/TransactionsContext';
 
 const newTransactionFormSchema = zod.object({
   // validacao
@@ -23,11 +26,13 @@ const newTransactionFormSchema = zod.object({
 type NewTransactionFormInputs = zod.infer<typeof newTransactionFormSchema>; // tipagem do form
 
 export function NewTransactionModal() {
+  const { createTransaction } = useContext(TransactionsContext);
   const {
     control, // se a informacao NAO vem de um elemento nativo do html precisa usar o control
     register, // se a informacao vem de um elemento nativo do html precisa usar register
     handleSubmit,
     formState: { isSubmitting },
+    reset,
   } = useForm<NewTransactionFormInputs>({
     resolver: zodResolver(newTransactionFormSchema), // resolver da validacao, recebe o schema de validacao
     defaultValues: {
@@ -37,7 +42,8 @@ export function NewTransactionModal() {
 
   function handleNewTransactionTransactions(data: NewTransactionFormInputs) {
     // data sao os valores dos campos dos formularios
-    console.log(data);
+    createTransaction(data);
+    reset();
   }
   return (
     <Dialog.Portal>

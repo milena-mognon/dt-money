@@ -47,6 +47,22 @@
       "type": "outcome",
       "createdAt": "2022-07-30T13:38:57.560Z",
       "id": 6
+    },
+    {
+      "description": "Desenvolvimento de App",
+      "type": "income",
+      "category": "Venda",
+      "price": 5000,
+      "createdAt": "2022-09-10T20:43:04.081Z",
+      "id": 7
+    },
+    {
+      "description": "Marmita",
+      "type": "outcome",
+      "category": "Alimento",
+      "price": 10,
+      "createdAt": "2022-09-10T20:53:45.253Z",
+      "id": 8
     }
   ]
 }
