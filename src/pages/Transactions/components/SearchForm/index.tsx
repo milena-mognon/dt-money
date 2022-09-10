@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import { MagnifyingGlass } from 'phosphor-react';
 import { useForm } from 'react-hook-form';
 import { SearchFormContainer } from './styles';
 import * as zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { TransactionsContext } from '../../../../contexts/TransactionsContext';
 
 const searchFormSchema = zod.object({
   // validacao
@@ -12,6 +14,8 @@ const searchFormSchema = zod.object({
 type SearchFormInputs = zod.infer<typeof searchFormSchema>; // tipagem do form
 
 export function SearchForm() {
+  const { fetchTransactions } = useContext(TransactionsContext);
+
   const {
     register,
     handleSubmit,
@@ -20,9 +24,9 @@ export function SearchForm() {
     resolver: zodResolver(searchFormSchema), // resolver da validacao, recebe o schema de validacao
   });
 
-  function handleSearchTransactions(data: SearchFormInputs) {
+  async function handleSearchTransactions(data: SearchFormInputs) {
     // data sao os valores dos campos dos formularios
-    console.log(data);
+    await fetchTransactions(data.query);
   }
 
   return (
