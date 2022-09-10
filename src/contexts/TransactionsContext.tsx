@@ -20,7 +20,7 @@ interface CreateTransactionInput {
 interface TransactionContextType {
   transactions: Transaction[];
   fetchTransactions: (query?: string) => Promise<void>;
-  createTransaction: (data: CreateTransactionInput) => void;
+  createTransaction: (data: CreateTransactionInput) => Promise<void>;
 }
 
 interface TransactionsProviderProds {

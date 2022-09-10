@@ -40,9 +40,11 @@ export function NewTransactionModal() {
     },
   });
 
-  function handleNewTransactionTransactions(data: NewTransactionFormInputs) {
+  async function handleNewTransactionTransactions(
+    data: NewTransactionFormInputs
+  ) {
     // data sao os valores dos campos dos formularios
-    createTransaction(data);
+    await createTransaction(data);
     reset();
   }
   return (
