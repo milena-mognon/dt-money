@@ -1,9 +1,9 @@
-import { useContext } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
 import { useForm, Controller } from 'react-hook-form';
 import * as zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useContext } from 'react';
 import {
   CloseButton,
   Content,
@@ -25,6 +25,7 @@ type NewTransactionFormInputs = zod.infer<typeof newTransactionFormSchema>; // t
 
 export function NewTransactionModal() {
   const { createTransaction } = useContext(TransactionsContext);
+
   const {
     control, // se a informacao NAO vem de um elemento nativo do html precisa usar o control
     register, // se a informacao vem de um elemento nativo do html precisa usar register
